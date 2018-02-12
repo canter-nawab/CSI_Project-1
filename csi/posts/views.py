@@ -9,7 +9,7 @@ from .forms import PostForm
 from .models import Post
 
 def post_create(request):
-	form=PostForm(request.POST or None)
+	form=PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		instance = form.save(commit=False)
 		print form.cleaned_data.get("title")
@@ -22,7 +22,7 @@ def post_create(request):
 	}
 	return render(request,"post_form.html",context)
 
-def post_detail(request,id):
+def post_detail(request,id=None):
 	instance = get_object_or_404(Post,id=id)
 	context = {
 		"title": instance.title,
@@ -34,8 +34,9 @@ def post_detail(request,id):
 def post_list(request):
 	queryset_list =Post.objects.all()#.order_by("-timestamp")
 	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
-
-	page = request.GET.get('page')
+	page_request_var = "page"
+	page = request.GET.get(page_request_var)
+	#page = request.GET.get('page')
 	try:
 		queryset = paginator.page(page)
 	except PageNotAnInteger:
@@ -44,7 +45,8 @@ def post_list(request):
 		queryset = paginator.page(paginator.num_pages)
 	context = {
 		"object_list": queryset,
-		"title": "List"
+		"title": "List",
+		"page_request_var": page_request_var,
 	}
 	return render(request,"post_list.html",context)
 
@@ -60,7 +62,7 @@ def post_update(request,id=None):
 		instance = form.save(commit=False)
 		
 		instance.save()
-		messages.success(request,"Successfully Creted")
+		messages.success(request, "<a href='#'>Item</a> Saved", extra_tags='html_safe')
 		return HttpResponseRedirect(instance.get_absolute_url())
 
 
