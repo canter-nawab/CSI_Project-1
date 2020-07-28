@@ -1,10 +1,14 @@
+Contibutors: Bhavesh Kalra, Mayank SIngh Rajkumar, Shivam Kashaudhan
+
+
 CSI_Project
 
 Telegenic Express
 
-This project intends to make a platform for online videos. These videos will be arranged in different sections made on the platform. It will have like and share button for the video.In this user will have the facility to signup.Anyone having a valid acccount can upload videos on the platform.
+It is a platform for independent film makers and the people who are willing to share videos. Filmmakers can collaborate to provide better content.There is a different account for different user.Account is compulsory for accessing the site.Every user can upload their videos.There is also asearch column for the same.There is acomment section for each video as well as description for it.
 
-For the Backend work, we have used Django framework.For the Frontend work,we have used HTML,CSS and Bootstrap.
+Technologies used-django,bootstrap,html,css,js
+
 
 We have created a file 'posts' in tele_exp/csi.Accessing the link http://127.0.0.1:8000/ will lead you to our home page.Home page contains the posts. There is a button in every post which will lead you to contents of that post and date on which that post was created.You can create any post in this using http://127.0.0.1:8000/create/. You can delete any post using http://127.0.0.1:8000/post_no./delete/. You can edit the post using http://127.0.0.1:8000/post_no./edit/. You can upload the image also. You will get a proper message after performing any of the above operations discussed.
 
